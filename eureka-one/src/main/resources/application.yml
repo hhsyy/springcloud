@@ -1,0 +1,13 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: eureka
+
+eureka:
+  client:
+#    registerWithEureka: false
+#    fetchRegistry: false
+    service-url:
+      defaultZone: http://127.0.0.1:8091/eureka

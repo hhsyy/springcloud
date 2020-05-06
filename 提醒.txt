@@ -1,0 +1,52 @@
+提示：新建maven模块项目，删除src文件夹，以下在maven模块中新建
+
+一、服务端
+1.在maven下创建springboot项目
+2.添加 eureka-server 依赖
+3.编写yml文件，主要有：
+    端口（server-port）
+    项目名称（application-name），指定微服务的名称后续在调用的时候只需要使用该名称就可以进行服务的访问
+    eureka配置，主要有：
+        registerWithEureka: false  #默认true 是否向server注册
+        fetchRegistry: false   #默认true 是否向server获取注册表
+         service-url:
+             defaultZone: 地址   #多个可以用“，”隔开
+
+3.启动文件处添加配置@EnableEurekaServer，声明为注册中心
+4.多个服务可相互注册，单要在yml去掉注释registerWithEureka和fetchRegistry
+
+二、客户端
+1.在maven下创建springboot项目
+2.在pom中添加eureka-client依赖
+3.编写yml配置文件
+    端口（server-port）
+    项目名称（application-name），指定微服务的名称后续在调用的时候只需要使用该名称就可以进行服务的访问
+    eureka配置，主要有：
+         service-url:
+             defaultZone: 地址
+4.在启动文件中添加@EnableDiscoveryClient(f版中可去掉)，向注册中心注册
+
+三、消费者客户端调用方式（负载均衡）
+① ribbon（负载均衡微服务中的应用）
+    1.如二创建客户端
+    2.添加ribbon依赖（f版中无需添加，spring-cloud-starter-netflix-eureka-client 里边已经包含了 spring-cloud-starter-netflix-ribbon）
+    3.重写RestTemplate方法 并添加注解 @LoadBalanced
+    4.使用RestTemplate返回服务地址：url=http://服务名/要调用的服务端口  （服务名会被解析为ip+port）
+
+② LoadBalancerClient方式
+    1.如二创建客户端
+    2.重写RestTemplate方法
+    3.获取LoadBalancerClient实例，LoadBalancerClient.choose("服务端名称")获取要调用的服务端名称
+    4.把获取的ip及端口放入url中（LoadBalancerClient会按规则获取相应的服务）
+
+③ Feign（实际开发常用，其内部默认使用了ribbon）
+    1.如二创建客户端
+    2.添加openfeign依赖
+    3.在启动类上添加@EnableFeignClients开启feign
+    4.添加Feign接口类
+        类上添加注解 @FeignClient(name = "服务名")
+        方法需和对应的服务的方法名和参数名一致
+    5.添加访问类，实现接口，方法内调用接口的方法
+
+
+

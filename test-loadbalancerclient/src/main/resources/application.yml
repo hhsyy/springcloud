@@ -1,0 +1,9 @@
+server:
+  port: 8106
+spring:
+  application:
+    name: test-loadbalancerclient
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8090/eureka

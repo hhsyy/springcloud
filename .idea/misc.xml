@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka-one/pom.xml" />
+        <option value="$PROJECT_DIR$/eureka-two/pom.xml" />
+        <option value="$PROJECT_DIR$/testclient/pom.xml" />
+        <option value="$PROJECT_DIR$/testcient-one/pom.xml" />
+        <option value="$PROJECT_DIR$/testribbon/pom.xml" />
+        <option value="$PROJECT_DIR$/test-loadbalancerclient/pom.xml" />
+        <option value="$PROJECT_DIR$/test-feign/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="eureka-two" />
+        <module name="test-loadbalancerclient" />
+        <module name="testribbon" />
+        <module name="eureka-one" />
+        <module name="test-feign" />
+        <module name="testcient-one" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="testclient-one" target="1.8" />
+      <module name="testclient-two" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="eureka-one" options="-parameters" />
+      <module name="eureka-two" options="-parameters" />
+      <module name="test-feign" options="-parameters" />
+      <module name="test-loadbalancerclient" options="-parameters" />
+      <module name="testcient-one" options="-parameters" />
+      <module name="testclient-one" options="-parameters" />
+      <module name="testclient-two" options="-parameters" />
+      <module name="testribbon" options="-parameters" />
+    </option>
+  </component>
+</project>
