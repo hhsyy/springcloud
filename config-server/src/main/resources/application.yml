@@ -1,0 +1,16 @@
+server:
+  port: 8112
+
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/hhsyy/config-repo-test # 配置git仓库的地址
+          search-paths: test # git仓库地址下的相对地址，可以配置多个，用,分割。
+          username: hhsyy
+          password: hhs19951020
+
+

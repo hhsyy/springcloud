@@ -9,10 +9,12 @@
         <module name="eureka-two" />
         <module name="test-loadbalancerclient" />
         <module name="demo" />
+        <module name="config-server" />
         <module name="hystrix-turbine" />
         <module name="testribbon" />
         <module name="hystrix-dashboard" />
         <module name="eureka-one" />
+        <module name="config-client" />
         <module name="test-hystrix" />
         <module name="test-feign" />
         <module name="testcient-one" />
@@ -26,6 +28,8 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="config-client" options="-parameters" />
+      <module name="config-server" options="-parameters" />
       <module name="demo" options="-parameters" />
       <module name="eureka-one" options="-parameters" />
       <module name="eureka-two" options="-parameters" />

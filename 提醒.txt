@@ -75,8 +75,43 @@
 
          turbine：略
 
-五、配置中心
-    1.
+五、配置中心（Client和Server）
+    1.server（提供配置文件的存储、以接口的形式将配置文件的内容提供出去）
+        ① 创建springboot项目，添加config-server依赖
+        ② 在配置文件：
+            spring:
+              cloud:
+                config:
+                  server:
+                    git:
+                      uri: https://github.com/hhsyy/config-repo-test # 配置git仓库的地址
+                      search-paths: test #此为仓库下的文件夹地址，可以配置多个，用,分割。
+                      username:
+                      password:
+
+            提示：设置spring.profiles.active=native，可从本地获取配置(默认src/main/resource下，指定可以file:E:/绝对路径)
+        ③ 启动类添加 @EnableConfigServer
+        ④ 访问 http://127.0.0.1:8112/config-client/dev（服务端的数据是实时改变的），http://127.0.0.1:8112/config-client-dev.yml可直接查看yml文件
+        ⑤ github上的配置文件命名规则
+            /{application}/{profile}[/{label}]
+            /{application}-{profile}.yml
+            /{label}/{application}-{profile}.yml
+            /{application}-{profile}.properties
+            /{label}/{application}-{profile}.properties
+
+    2.client（通过接口获取数据、并依据此数据初始化自己的应用）
+        ① 创建springboot项目，添加config依赖
+        ② 填好yml端口项目名，新建一个bootstrap.yml项目（会比application提前加载），填写
+            spring:
+              cloud:
+                config:
+                  uri: http://127.0.0.1:8112 # 配置中心的具体地址，即 config-server
+                  name: config-client # http://127.0.0.1:8112/config-client-dev.yml对应 {application} 部分
+                  profile: dev # http://127.0.0.1:8112/config-client-dev.yml对应 {profile} 部分
+                  label: master # 仓库对应 {label} 部分，即 Git 的分支。如果配置中心使用的是本地存储，则该参数无用
+        ③ 编写测试类测试是否获取成功（此客户端不能实时刷新数据）
+        ④ 简单实现实时刷新，添加依赖actuator，测试类添加@RefreshScope，每当执行/actuator/refresh数据便会刷新（每次执行都会很麻烦，可用GitHub数据更新后回执执行这个地址）
+
 
 
 

@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    config:
+      uri: http://127.0.0.1:8112 # 配置中心的具体地址，即 config-server
+      name: config-client # http://127.0.0.1:8112/config-client-dev.yml对应 {application} 部分
+      profile: dev # http://127.0.0.1:8112/config-client-dev.yml对应 {profile} 部分
+      label: master # 仓库对应 {label} 部分，即 Git 的分支。如果配置中心使用的是本地存储，则该参数无用
+
