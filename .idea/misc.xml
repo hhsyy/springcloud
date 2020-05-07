@@ -12,6 +12,9 @@
         <option value="$PROJECT_DIR$/testribbon/pom.xml" />
         <option value="$PROJECT_DIR$/test-loadbalancerclient/pom.xml" />
         <option value="$PROJECT_DIR$/test-feign/pom.xml" />
+        <option value="$PROJECT_DIR$/test-hystrix/pom.xml" />
+        <option value="$PROJECT_DIR$/hystrix-dashboard/pom.xml" />
+        <option value="$PROJECT_DIR$/hystrix-turbine/pom.xml" />
       </list>
     </option>
   </component>

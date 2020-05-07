@@ -48,5 +48,39 @@
         方法需和对应的服务的方法名和参数名一致
     5.添加访问类，实现接口，方法内调用接口的方法
 
+四、服务熔断（解决雪崩）--Feign Hystrix
+    1.创建如三-③所示项目，Hystrix所依赖项已包含在feign内
+    2.在yml中的feign下开启hystrix
+        feign:
+          hystrix:
+            enabled: true
+    3.添加feign的实现类，该类会在无法找到对应服务后执行
+    4.在feign接口类上FeignClient增添fallback
+    5.测试结果（俩服务）：关掉一个服务，刚开始会执行回执，之后再也不会；全关，一直执行回执；
+    6.熔断监控面板
+         单体：hystrix-dashboard
+               ① 创建springboot项目
+               ② 添加依赖netflix-hystrix和netflix-hystrix-dashboard
+               ③ 在启动类上添加@EnableHystrixDashboard
+               ④ 访问地址为:ip:port/histrix(此不是项目名，固定hystrix)，第一行为监听的地址，下面为延迟和标题
+               ⑤ 添加监听点，在熔断机制的项目上添加依赖netflix-hystrix和actuator
+               ⑥ 在熔断机制的项目上的yml添加配置：
+                        management:
+                           endpoints:
+                             web:
+                               exposure:
+                                 include: hystrix.stream
+               ⑦ 在熔断机制的项目上的启动类添加@EnableHystrix
+               ⑧ 打开第④步骤的地址，在第一行输入http://熔断机制项目ip及端口/actuator/hystrix.stream，点击监听流。
+
+         turbine：略
+
+五、配置中心
+    1.
+
+
+
+
+
 
 

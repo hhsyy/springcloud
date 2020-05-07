@@ -1,0 +1,17 @@
+server:
+  port: 8110
+spring:
+  application:
+    name: hystrix-turbine
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8090/eureka
+
+management:
+  port: 8111
+
+turbine:
+  app-config: test-hystrix #监听的服务名
+  cluster-name-expression: new String("default") #turbine集群名称，用以区分不同的turbine集群，new String("default") 这个一定要用 String 来包一下，否则启动的时候会抛出异常
+  combine-host-port: true  #默认会以host区分不同服务，开启后会以主机名与端口号区分
