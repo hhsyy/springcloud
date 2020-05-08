@@ -1,5 +1,9 @@
 server:
   port: 8112
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8090/eureka
 
 spring:
   application:
@@ -8,9 +12,25 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/hhsyy/config-repo-test # 配置git仓库的地址
-          search-paths: test # git仓库地址下的相对地址，可以配置多个，用,分割。
+          uri: https://github.com/hhsyy/config-repo-test
+          search-paths: test
           username: hhsyy
           password: hhs19951020
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
 
 

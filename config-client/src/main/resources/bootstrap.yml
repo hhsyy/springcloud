@@ -1,8 +1,23 @@
+#此为非微服务获取配置的配置
+#spring:
+#  cloud:
+#    config:
+#      uri: http://127.0.0.1:8112 # 配置中心的具体地址，即 config-server
+#      name: config-client # http://127.0.0.1:8112/config-client-dev.yml对应 {application} 部分
+#      profile: dev # http://127.0.0.1:8112/config-client-dev.yml对应 {profile} 部分
+#      label: master # 仓库对应 {label} 部分，即 Git 的分支。如果配置中心使用的是本地存储，则该参数无用
+
 spring:
   cloud:
     config:
-      uri: http://127.0.0.1:8112 # 配置中心的具体地址，即 config-server
-      name: config-client # http://127.0.0.1:8112/config-client-dev.yml对应 {application} 部分
-      profile: dev # http://127.0.0.1:8112/config-client-dev.yml对应 {profile} 部分
-      label: master # 仓库对应 {label} 部分，即 Git 的分支。如果配置中心使用的是本地存储，则该参数无用
+      name: config-client
+      profile: dev
+      label: master
+      discovery:
+        enabled: true
+        service-id: config-server
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8090/eureka

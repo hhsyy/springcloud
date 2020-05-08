@@ -77,7 +77,7 @@
 
 五、配置中心（Client和Server）
     1.server（提供配置文件的存储、以接口的形式将配置文件的内容提供出去）
-        ① 创建springboot项目，添加config-server依赖
+        ① 创建springcloud微服务项目，添加config-server依赖
         ② 在配置文件：
             spring:
               cloud:
@@ -100,18 +100,33 @@
             /{label}/{application}-{profile}.properties
 
     2.client（通过接口获取数据、并依据此数据初始化自己的应用）
-        ① 创建springboot项目，添加config依赖
-        ② 填好yml端口项目名，新建一个bootstrap.yml项目（会比application提前加载），填写
+        ① 创建springcloud微服务项目，添加config依赖
+        ② 填好yml端口项目名，新建一个bootstrap.yml项目（会比application提前加载），eureka配置也写在这，填写
             spring:
               cloud:
                 config:
-                  uri: http://127.0.0.1:8112 # 配置中心的具体地址，即 config-server
                   name: config-client # http://127.0.0.1:8112/config-client-dev.yml对应 {application} 部分
                   profile: dev # http://127.0.0.1:8112/config-client-dev.yml对应 {profile} 部分
                   label: master # 仓库对应 {label} 部分，即 Git 的分支。如果配置中心使用的是本地存储，则该参数无用
+                  discovery:
+                   enabled: true #开启 Config 服务发现支持
+                   service-id: config-server
         ③ 编写测试类测试是否获取成功（此客户端不能实时刷新数据）
-        ④ 简单实现实时刷新，添加依赖actuator，测试类添加@RefreshScope，每当执行/actuator/refresh数据便会刷新（每次执行都会很麻烦，可用GitHub数据更新后回执执行这个地址）
+        ④ 简单实现实时刷新，添加依赖actuator，测试类添加@RefreshScope，每当执行/actuator/refresh数据便会刷新（每次执行都会很麻烦，可用GitHub数据更新后回执执行这个地址，即webhook）
 
+    3.消息总线（Spring Cloud Bus）
+        ① webhook方式：主动刷新客户端方式
+        ② 消息总线：当配置改变时，config-server就通知消息总线（需执行url），消息总线就通知客户端获取config-server的配置（主要使用mq，kafka或rabbitmq等）
+           以上面项目为基础
+           1>:以rabbitmq为例
+           2>:config-server端
+                添加依赖 actuator和bus-amqp（bus-kafka）
+                config-server yml 添加bus（开启bus）、rabbitmq（添加消息队列配置）、management配置
+                当github的配置更新时，执行http://127.0.0.1:8112/actuator/bus-refresh（post），会推送至客户端更新配置
+           3>:config-client端
+                添加依赖bus、actuator、bus-amqp
+                yml添加bus（开启bus）、rabbitmq（添加消息队列配置）
+                当github的配置更新时，服务端执行刷新，就能收到一改变的配置
 
 
 
