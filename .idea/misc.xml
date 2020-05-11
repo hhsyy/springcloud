@@ -17,6 +17,7 @@
         <option value="$PROJECT_DIR$/hystrix-turbine/pom.xml" />
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/config-client/pom.xml" />
+        <option value="$PROJECT_DIR$/test-zuul/pom.xml" />
       </list>
     </option>
   </component>

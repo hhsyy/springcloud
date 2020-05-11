@@ -128,6 +128,25 @@
                 yml添加bus（开启bus）、rabbitmq（添加消息队列配置）
                 当github的配置更新时，服务端执行刷新，就能收到一改变的配置
 
+六、网关（zuul）
+1.基本使用
+    ① pom 添加包 zuul
+    ② 启动类上添加 @EnableZuulProxy
+    ③ yml 添加zuul配置，具体看项目中的yml文件
+
+2.zuulFilter
+    ① 创建自定义filter类，继承ZuulFilter并实现其方法
+    ② 具体方法如ZuulConfig注释所示：
+        filter优先级：filterOrder
+        filter是否执行：shouldFilter
+        filter类别：filterType
+        filter 业务方法：run
+
+3.说明：
+    ① 可在filter下的业务方法判断token
+    ② zuul可不直接转跳服务，而转跳 feign进行负载均衡，
+
+
 
 
 

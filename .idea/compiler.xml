@@ -13,6 +13,7 @@
         <module name="hystrix-turbine" />
         <module name="hystrix-dashboard" />
         <module name="test-feign" />
+        <module name="test-zuul" />
         <module name="eureka-one" />
         <module name="test-hystrix" />
         <module name="testribbon" />
@@ -38,6 +39,7 @@
       <module name="test-feign" options="-parameters" />
       <module name="test-hystrix" options="-parameters" />
       <module name="test-loadbalancerclient" options="-parameters" />
+      <module name="test-zuul" options="-parameters" />
       <module name="testcient-one" options="-parameters" />
       <module name="testclient-one" options="-parameters" />
       <module name="testclient-two" options="-parameters" />
