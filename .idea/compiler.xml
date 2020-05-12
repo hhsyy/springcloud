@@ -6,19 +6,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eureka-two" />
-        <module name="demo" />
         <module name="config-server" />
         <module name="config-client" />
-        <module name="hystrix-turbine" />
         <module name="hystrix-dashboard" />
-        <module name="test-feign" />
+        <module name="demo" />
         <module name="test-zuul" />
-        <module name="eureka-one" />
-        <module name="test-hystrix" />
-        <module name="testribbon" />
-        <module name="test-loadbalancerclient" />
         <module name="testcient-one" />
+        <module name="eureka-one" />
+        <module name="test-sleuth" />
+        <module name="testribbon" />
+        <module name="test-hystrix" />
+        <module name="eureka-two" />
+        <module name="hystrix-turbine" />
+        <module name="test-loadbalancerclient" />
+        <module name="test-feign" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -39,6 +40,7 @@
       <module name="test-feign" options="-parameters" />
       <module name="test-hystrix" options="-parameters" />
       <module name="test-loadbalancerclient" options="-parameters" />
+      <module name="test-sleuth" options="-parameters" />
       <module name="test-zuul" options="-parameters" />
       <module name="testcient-one" options="-parameters" />
       <module name="testclient-one" options="-parameters" />

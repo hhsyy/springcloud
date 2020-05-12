@@ -14,4 +14,6 @@ zuul:
       path: /zuuls-test/**               # ?:单个字符，**：单个字符，*：任意数量字符
 #      url: http://127.0.0.1:8101/testclient   #根据地址查找服务
       service-id: TEST-FEIGN                   #根据注册中心服务名查找服务
-
+    zikpin:-testclient:
+      path: /test-sleuth/**
+      service-id: TEST-SLEUTH

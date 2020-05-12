@@ -146,6 +146,37 @@
     ① 可在filter下的业务方法判断token
     ② zuul可不直接转跳服务，而转跳 feign进行负载均衡，
 
+七、数据收集（sleuth和zipkin）
+1.介绍
+    ① Sleuth
+        trace：从请求到响应的所有动作（包含一系列span），第一个span id和trace id相同
+        span：基本工作单元，包含一系列详细信息
+        Annotation：记录一个事件
+                    cs - Client Sent
+                    sr - Server Received
+                    ss - Server Sent
+                    cr - Client Received
+
+    ② ziplin收集方式：
+        In-Memory
+        MySql
+        Cassandra
+        Elasticsearch（项目常用）
+
+    ③ zipkin分为客户端和服务端
+              服务端：官网不建议自定义，而提供了jar（https://dl.bintray.com/openzipkin/maven/io/zipkin/java/zipkin-server/）
+              客户端：即所使用的微服务个
+
+    ④ 发送方式：
+        HTTP 报文
+        消息总线
+
+2.基本使用
+    ① 创建eureka项目，添加sleuth和zipkin依赖（zipkin包 包含了sleuth的包）
+    ② 配置yml 添加zikpin和sleuth配置
+    ③ 执行服务端 命令（java -jar 包名），访问ui界面地址（cmd上有显示）
+    ④ 当客户端访问了之后 则ui界面会出现对应服务
+
 
 
 

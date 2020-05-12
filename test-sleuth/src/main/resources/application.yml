@@ -1,0 +1,16 @@
+server:
+  port: 8116
+
+spring:
+  application:
+    name: test-sleuth
+  zipkin:
+    base-url: http://localhost:9411 #zipkin 服务端jar包运行地址
+  sleuth:
+    sampler:
+      probability: 1.0 #1.0为全样采集，减少可改为如0.1
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8090/eureka
+
