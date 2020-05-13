@@ -15,6 +15,7 @@
         <module name="eureka-one" />
         <module name="test-sleuth" />
         <module name="testribbon" />
+        <module name="gateway" />
         <module name="test-hystrix" />
         <module name="eureka-two" />
         <module name="hystrix-turbine" />
@@ -35,6 +36,7 @@
       <module name="demo" options="-parameters" />
       <module name="eureka-one" options="-parameters" />
       <module name="eureka-two" options="-parameters" />
+      <module name="gateway" options="-parameters" />
       <module name="hystrix-dashboard" options="-parameters" />
       <module name="hystrix-turbine" options="-parameters" />
       <module name="test-feign" options="-parameters" />

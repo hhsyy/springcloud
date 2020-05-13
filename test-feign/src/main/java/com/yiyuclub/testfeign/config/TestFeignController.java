@@ -14,4 +14,9 @@ public class TestFeignController {
     public String test(String username){
         return testFeign.show(username);
     }
+
+    @GetMapping("gateway-test/test")
+    public String gatewayByTest(String username){
+        return testFeign.show(username);
+    }
 }

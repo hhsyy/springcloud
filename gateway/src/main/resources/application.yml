@@ -1,0 +1,30 @@
+server:
+  port: 8117
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: router_test_feign     #唯一标识
+        uri: lb://TEST-FEIGN      #开启服务后的服务名,lb表示从服务中心获取
+        predicates:
+        - Path=/gateway-test/test              #断言机制
+        filter:
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
+#       - StripPrefix=1           #省略端口号后的第一个地址（如果只有一个地址，会访问不了，如/test）
+
+hystrix.command.fallbackcmd.execution.isolation.thread.timeoutInMilliseconds: 5000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8090/eureka
+

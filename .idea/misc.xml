@@ -19,6 +19,7 @@
         <option value="$PROJECT_DIR$/config-client/pom.xml" />
         <option value="$PROJECT_DIR$/test-zuul/pom.xml" />
         <option value="$PROJECT_DIR$/test-sleuth/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway/pom.xml" />
       </list>
     </option>
   </component>

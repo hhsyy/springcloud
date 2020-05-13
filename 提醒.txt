@@ -177,6 +177,46 @@
     ③ 执行服务端 命令（java -jar 包名），访问ui界面地址（cmd上有显示）
     ④ 当客户端访问了之后 则ui界面会出现对应服务
 
+八、网关二代（gateway）
+    1.介绍
+        ① Route(路由)：由ID,URL,filter，断言组成（断言为真，请求URL与配置匹配）
+        ② Predicate（断言）
+        ③ filter（过滤器）：处理请求前后业务(即在经过断言路由匹配后，在前会执行“pre”，在之后执行“post”过滤器)
+
+    2.流程：
+        ① 客户端向gateway发送请求
+        ② 请求URL与gateway匹配
+        ③ 转到gateway 业务处理代码（过滤器等）
+        ④ 跳转对应路由
+
+    3.过滤器：
+        GatewayFilter：指定过滤器，需实现GatewayFilter和Ordered方法
+        Globalfilter：全局过滤器，需实现GlobalFilter, Ordered方法
+
+    4.内置断言（根据以下去选择匹配的路由url服务）：
+        datetime匹配：请求的时间满足配置的前中后
+        Cookie匹配：请求cookie满足正则匹配值
+        Header匹配：是否包含制定名称和正则匹配值
+        Host匹配：请求的host匹配值
+        Method匹配：请求method的匹配值
+        Path匹配：请求路径的匹配值
+        Query匹配：参数正则匹配值
+        RemoteAddr匹配：远程地址配置匹配值
+
+    3.基本使用(这里使用的是yml方式，还有编码方式)
+        ① 创建eureka项目，pom引入gateway依赖(注意：spring-cloud-starter-gateway与spring-boot-starter-web和spring-boot-starter-webflux依赖冲突，需排除)
+        ② 编写yml，加入gateway配置（id，url，断言(断言里面的配置大小写必须写正确)）
+
+        ③ 熔断：pom加入hystrix包，配置文件添加熔断过滤器
+
+        ④ 过滤器：
+            创建类，实现实现GlobalFilter(GatewayFilter), Ordered类，继承其方法
+
+        ⑤ 自定义过滤器工厂
+
+        ⑥ 限流
+
+
 
 
 
